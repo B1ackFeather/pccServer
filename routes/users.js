@@ -13,25 +13,13 @@ router.get('/login', function(req, res, next) {
     var db = req.db;
     if (req.query.isparent == 1){
 	    db.collection('parent').findOne({'parentID':req.query.ID, 'password':req.query.password}, function (err, items) {
-	        if (items == null){
-	        	res.json({'sta':false});
-	        }
-	        else{
-	        	items.sta = true;
-	        	res.json(items);
-	        }
+	        res.json(items);
 	    });   	
     }
     else{
-    db.collection('teacher').findOne({'teacherID':req.query.ID, 'password':req.query.password}, function (err, items) {
-        if (items == null){
-        	res.json({'sta':false});
-        }
-        else{
-        	items.sta = true;
-        	res.json(items);
-        }
-    });
+	    db.collection('teacher').findOne({'teacherID':req.query.ID, 'password':req.query.password}, function (err, items) {
+	        res.json(items);
+	    });
     }
 
 });
