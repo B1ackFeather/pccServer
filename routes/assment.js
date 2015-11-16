@@ -16,7 +16,7 @@ router.get('/get', function(req, res, next) {
            res.json(items);
         }); 	
     else if(req.query.teacher)
-        db.collection('assignment').find({'creator':req.query.teacher}).toArray(function (err, items){
+        db.collection('assignment').find({'teacherid':req.query.teacher}).toArray(function (err, items){
            res.json(items);
         }); 
 });

@@ -12,12 +12,12 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next) {
     var db = req.db;
     if (req.query.isparent == 1){
-	    db.collection('parent').findOne({'parentID':req.query.ID, 'password':req.query.password}, function (err, items) {
+	    db.collection('parent').findOne({'childid':req.query.ID, 'password':req.query.password}, function (err, items) {
 	        res.json(items);
 	    });   	
     }
     else{
-	    db.collection('teacher').findOne({'teacherID':req.query.ID, 'password':req.query.password}, function (err, items) {
+	    db.collection('teacher').findOne({'teacherid':req.query.ID, 'password':req.query.password}, function (err, items) {
 	        res.json(items);
 	    });
     }
