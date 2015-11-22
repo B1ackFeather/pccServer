@@ -29,7 +29,7 @@ router.get('/login', function(req, res, next) {
 router.post('/', function(req, res) {
     var db = req.db;
     if (req.query.isparent == 1){
-        db.collection('parents').insert(req.body, function(err, result){
+        db.collection('parent').insert(req.body, function(err, result){
             res.send(
                 (err === null) ? { msg: '' } : { msg: err }
             );
