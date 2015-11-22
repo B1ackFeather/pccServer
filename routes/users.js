@@ -31,14 +31,14 @@ router.post('/', function(req, res) {
     if (req.query.isparent == 1){
         db.collection('parent').insert(req.body, function(err, result){
             res.send(
-                (err === null) ? { msg: '' } : { msg: err }
+                (err === null) ? { status: true } : { status: false }
             );
         });
     }
     else{
         db.collection('teacher').insert(req.body, function(err, result){
             res.send(
-                (err === null) ? { msg: '' } : { msg: err }
+                (err === null) ? { status: true } : { status: false }
             );
         });
     }
