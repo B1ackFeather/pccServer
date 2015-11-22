@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
+// GET check login
 router.get('/login', function(req, res, next) {
     var db = req.db;
     if (req.query.isparent == 1){
@@ -24,6 +25,24 @@ router.get('/login', function(req, res, next) {
 
 });
 
+// POST to add a user
+router.post('/', function(req, res) {
+    var db = req.db;
+    if (req.query.isparent == 1){
+        db.collection('parents').insert(req.body, function(err, result){
+            res.send(
+                (err === null) ? { msg: '' } : { msg: err }
+            );
+        });
+    }
+    else{
+        db.collection('teacher').insert(req.body, function(err, result){
+            res.send(
+                (err === null) ? { msg: '' } : { msg: err }
+            );
+        });
+    }
+});
 
 
 module.exports = router;
