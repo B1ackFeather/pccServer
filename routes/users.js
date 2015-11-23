@@ -4,9 +4,16 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     var db = req.db;
-    db.collection('parent').find({}).toArray(function (err, items) {
-        res.json(items);
-    });
+    if (req.query.isparent == 1){
+        db.collection('parent').find({}).toArray(function (err, items) {
+            res.json(items);
+        });
+    }
+    else{
+        db.collection('teacher').find({}).toArray(function (err, items) {
+            res.json(items);
+        });
+    }
 });
 
 // GET check login

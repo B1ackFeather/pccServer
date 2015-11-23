@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 router.get('/get', function(req, res, next) {
     var db = req.db;
     if(req.query.classnum)
-        db.collection('assignment').find({'class':req.query.classnum}).toArray(function (err, items){
+        db.collection('assignment').find({'classid':req.query.classnum}).toArray(function (err, items){
            res.json(items);
         }); 	
     else if(req.query.teacher)
@@ -21,6 +21,14 @@ router.get('/get', function(req, res, next) {
         }); 
 });
 
-
+// POST add a new assignment
+router.post('/', function(req, res) {
+    var db = req.db;
+    db.collection('assignment').insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { status: true } : { status: false }
+        );
+   });
+});
 
 module.exports = router;
