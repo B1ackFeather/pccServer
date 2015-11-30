@@ -11,6 +11,8 @@ var db = mongo.db("mongodb://localhost:27017/parentcoco",{native_parser:true});
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var parent = require('./routes/parent');
+var teacher = require('./routes/teacher');
 var assment = require('./routes/assment');
 var schedule = require('./routes/schedule');
 var activity = require('./routes/activity');
@@ -37,6 +39,8 @@ app.use(function(req,res,next){
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/parent', parent);
+app.use('/teacher', teacher);
 app.use('/assignment', assment);
 app.use('/schedule', schedule);
 app.use('/activity', activity);
