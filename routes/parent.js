@@ -17,6 +17,16 @@ router.get('/login', function(req, res, next) {
 
 });
 
+// GET childname by classid
+router.get('/getname', function(req, res, next) {
+    var db = req.db;
+    db.collection('parent').find({'classid':req.query.classid},{'_id':0, 'childid':1, 'childname':1}).toArray(function (err, items) {
+        res.json(items);
+    });     
+
+});
+
+
 // POST to add a user
 router.post('/', function(req, res) {
     var db = req.db;

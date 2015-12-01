@@ -8,12 +8,22 @@ router.get('/', function(req, res, next) {
         res.json(items);
     });
 });
+
 // GET check login
 router.get('/login', function(req, res, next) {
     var db = req.db;
     db.collection('teacher').findOne({'teacherid':req.query.ID, 'password':req.query.password}, function (err, items) {
 	    res.json(items);
     });
+});
+
+// GET teacher name by classid
+router.get('/getname', function(req, res, next) {
+    var db = req.db;
+    db.collection('teacher').find({'classid':req.query.classid},{'_id':0, 'teacherid':1, 'teachername':1}).toArray(function (err, items) {
+        res.json(items);
+    });     
+
 });
 
 // POST to add a user
