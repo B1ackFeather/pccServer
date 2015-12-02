@@ -76,8 +76,21 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var server1 = require('./socket');
-server1.create(3030);
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+io.on('connection', function (socket) {
+    console.log('a user connected  ' + socket.id);
+    socket.on('disconnect', function(){
+        console.log('a user disconnect  ' + socket.id);
+    });
+});
+
+http.listen(3030, function(){
+    console.log('server listen on 3030');
+});
+
+//var server1 = require('./socket');
+//server1.create(3030);
 
 // //chat server
 // var users = {}
