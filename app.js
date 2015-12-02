@@ -16,7 +16,6 @@ var teacher = require('./routes/teacher');
 var assment = require('./routes/assment');
 var schedule = require('./routes/schedule');
 var activity = require('./routes/activity');
-
 var app = express();
 
 // view engine setup
@@ -37,7 +36,11 @@ app.use(function(req,res,next){
     next();
 });
 
-app.use('/', routes);
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/index.html');
+});
+
+app.use('/pc', routes);
 app.use('/users', users);
 app.use('/parent', parent);
 app.use('/teacher', teacher);
