@@ -79,13 +79,42 @@ app.use(function(err, req, res, next) {
   });
 });
 
+var usermap = {}
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 io.on('connection', function (socket) {
     console.log('a user connected  ' + socket.id);
+    //online
+    socket.on('online', function (data){
+        socket.name = data.user;
+        if (!usermap[data.user]) {
+            usermap[data.user] = socket;
+            console.log('userid: ' + usermap[data.user].name);
+        }
+    });
+    //off-line
     socket.on('disconnect', function(){
+        if (usermap[socket.name]) {
+            console.log('delete user: ' + socket.name);
+            delete usermap[socket.name];
+        }
         console.log('a user disconnect  ' + socket.id);
     });
+    //receive a message
+    socket.on('send',function(data){
+        if (data.to == 'all') {
+            console.log("data.to: " + data.to)
+            socket.broadcast.emit('receive', data);
+            console.log('msg: ' + data.toString());
+        } 
+        else{
+            console.log('send to' + usermap[data.to].name);
+            if (usermap[data.to]) {
+                usermap[data.to].emit('receive', data);
+            }
+        }
+    })
+
 });
 
 http.listen(3030, function(){
