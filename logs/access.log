@@ -1,0 +1,8 @@
+[2015-12-06 17:13:43.461] [INFO] dateFileLog - GET /users
+[2015-12-06 17:13:58.398] [INFO] dateFileLog - GET /parent
+[2015-12-06 17:16:58.310] [INFO] log_file - GET /parent
+[2015-12-06 17:18:20.119] [INFO] log_file - GET /parent
+[2015-12-06 17:19:49.701] [INFO] log_file - GET /parent
+[2015-12-06 17:19:54.673] [INFO] log_file - GET /parent
+[2015-12-06 17:20:59.107] [INFO] log_file - ::ffff:127.0.0.1 - - "GET /parent HTTP/1.1" 200 309 "" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36"
+[2015-12-06 17:32:49.794] [INFO] log_file - GET /parent 200 ::ffff:127.0.0.1

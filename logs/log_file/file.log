@@ -1,0 +1,7 @@
+[2015-12-06 16:59:21.561] [TRACE] log_file - This is a Log4js-Test
+[2015-12-06 17:00:07.983] [TRACE] log_file - This is a Log4js-Test
+[2015-12-06 17:00:07.984] [DEBUG] log_file - We Write Logs with log4js
+[2015-12-06 17:00:07.984] [INFO] log_file - You can find logs-files in the log-dir
+[2015-12-06 17:00:07.984] [WARN] log_file - log-dir is a configuration-item in the log4js.json
+[2015-12-06 17:00:07.984] [ERROR] log_file - In This Test log-dir is : './logs/log_test/'
+[2015-12-06 17:15:23.828] [INFO] log_file - GET /parent

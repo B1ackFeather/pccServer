@@ -18,6 +18,9 @@ var schedule = require('./routes/schedule');
 var activity = require('./routes/activity');
 var app = express();
 
+//log
+var log = require('./log_start');  
+log.use(app);  
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
