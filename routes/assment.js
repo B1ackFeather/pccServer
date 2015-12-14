@@ -12,12 +12,12 @@ router.get('/', function(req, res, next) {
 //GET one assignment by classid or teacherid
 router.get('/get', function(req, res, next) {
     var db = req.db;
-    if(req.query.classnum)
-        db.collection('assignment').find({'classid':req.query.classnum}).toArray(function (err, items){
+    if(req.query.classid)
+        db.collection('assignment').find({'classid':req.query.classid}).toArray(function (err, items){
            res.json(items);
         }); 	
-    else if(req.query.teacher)
-        db.collection('assignment').find({'teacherid':req.query.teacher}).toArray(function (err, items){
+    else if(req.query.teacherid)
+        db.collection('assignment').find({'teacherid':req.query.teacherid}).toArray(function (err, items){
            res.json(items);
         }); 
 });
