@@ -39,7 +39,7 @@ router.get('/get1', function(req, res, next) {
 });
 
 //Submit assignment
-router.get('/submit', function(req, res, next) {
+router.post('/submit', function(req, res, next) {
     var db = req.db;
     db.collection('ass_parent').update({'assignid':req.query.assignid, 'childname':req.query.childname}, {$set:{"hasfinished":true}}, function (err, items) {
         res.send(
