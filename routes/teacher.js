@@ -31,7 +31,7 @@ router.post('/', function(req, res) {
     var db = req.db;
     db.collection('teacher').insert(req.body, function(err, result){
         res.send(
-            (err === null) ? { status: true } : { status: false }
+            (err === null) ? { status: true } : { msg:'error: ' + err }
         );
     });
 });

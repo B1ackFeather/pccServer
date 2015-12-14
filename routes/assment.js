@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
     });
 });
 
+//GET one assignment by classid or teacherid
 router.get('/get', function(req, res, next) {
     var db = req.db;
     if(req.query.classnum)
@@ -21,14 +22,33 @@ router.get('/get', function(req, res, next) {
         }); 
 });
 
+//GET one assignment by id
+router.get('/getone', function(req, res, next) {
+    var db = req.db;
+    db.collection('assignment').findOne({'assignid':req.query.ID}, function (err, items) {
+       res.json(items);
+    });     
+});
+
 // POST add a new assignment
 router.post('/', function(req, res) {
     var db = req.db;
-    db.collection('assignment').insert(req.body, function(err, result){
-        res.send(
-            (err === null) ? { status: true } : { status: false }
-        );
-   });
+    var assignment;
+    var classid;
+    db.collection('assignment').findOne({'assignid':req.body.assignid}, function (err, items) {
+        assignment = items;
+    }); 
+    if(assignment != null)
+         res.json({status: false});
+    else{
+        db.collection('assignment').insert(req.body, function(err, result){
+            classid = req.body.classid;
+        });
+        db.collection('parent').findOne({'childid':req.query.ID, 'password':req.query.password}, function (err, items) {
+            res.json(items);
+        });      
+    }
+    
 });
 
 module.exports = router;
