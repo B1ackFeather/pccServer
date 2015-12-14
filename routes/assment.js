@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET assignments listing. */
 router.get('/', function(req, res, next) {
     var db = req.db;
     db.collection('assignment').find({}).toArray(function (err, items) {
@@ -25,7 +25,7 @@ router.get('/get', function(req, res, next) {
 //GET one assignment by id for parent
 router.get('/getone', function(req, res, next) {
     var db = req.db;
-    db.collection('assignment').findOne({'assignid':req.query.ID}, function (err, items) {
+    db.collection('assignment').findOne({'assignid':req.query.assignid}, function (err, items) {
        res.json(items);
     });     
 });
