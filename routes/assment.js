@@ -41,11 +41,17 @@ router.get('/get1', function(req, res, next) {
 //Submit assignment
 router.post('/submit', function(req, res, next) {
     var db = req.db;
-    db.collection('ass_parent').update({'assignid':req.query.assignid, 'childname':req.query.childname}, {$set:{"hasfinished":true}}, function (err, items) {
-        res.send(
-            (err === null) ? { status: true } : { msg:'error: ' + err }
-        );
-    });     
+    db.collection('ass_parent').findOne({'assignid':req.query.assignid, 'childname':req.query.childname}, function (err, items) {
+        if(items == null)
+            res.send({ status: false });
+        else{
+            db.collection('ass_parent').update({'assignid':req.query.assignid, 'childname':req.query.childname}, {$set:{"hasfinished":true}}, function (err, items) {
+                res.send(
+                  (err === null) ? { status: true } : { msg:'error: ' + err }
+                );
+            }); 
+        }
+    });    
 });
 
 // POST add a new assignment
