@@ -28,4 +28,14 @@ router.get('/get', function(req, res, next) {
 		
   });
 
+// POST add a new schedule
+router.post('/', function(req, res) {
+    var db = req.db;
+    db.collection('schedule').insert(req.body, function(err, result){
+        res.send(
+            (err === null) ? { status: true } : { msg:'error: ' + err }
+        );
+   });
+});
+
 module.exports = router;
