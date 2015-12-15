@@ -17,6 +17,22 @@ router.get('/get', function(req, res, next) {
     });     
 });
 
+// GET participate activity
+router.get('/participate', function(req, res, next) {
+    var db = req.db;
+    db.collection('activity').find({'participateid':req.query.ID}).toArray(function (err, items){
+       res.json(items);
+    });     
+});
+
+// GET organize activity
+router.get('/organizer', function(req, res, next) {
+    var db = req.db;
+    db.collection('activity').find({'organizer':req.query.organizer}).toArray(function (err, items){
+       res.json(items);
+    });     
+});
+
 //join an activity
 router.get('/join', function(req, res, next) {
     var db = req.db;
